@@ -2,35 +2,54 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>마커 생성하기</title>
+    <title>여러개 마커 표시하기</title>
     
 </head>
 <body>
 <div id="map" style="width:100%;height:350px;"></div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=753d0ddca63c0a555a3557bc8d1aac57"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=발급받은 APP KEY를 사용하세요"></script>
 <script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
-        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        center: new daum.maps.LatLng(37.459359, 126.952016), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };
 
 var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+ 
+// 마커를 표시할 위치와 title 객체 배열입니다 
+var positions_gate = [new daum.maps.LatLng(37.465561, 126.948535), new daum.maps.LatLng(37.467934, 126.942616), new daum.maps.LatLng(37.469755, 126.943417)];
+var positions_dorm = [new daum.maps.LatLng(37.463417, 126.958984), new daum.maps.LatLng(37.471222, 126.95995), new daum.maps.LatLng(37.473376, 126.964068)];
+var positions_eng = [new daum.maps.LatLng(37.448807, 126.952540), new daum.maps.LatLng(37.459415, 126.932866), new daum.maps.LatLng(37.461986, 126.930236)];
 
-// 마커가 표시될 위치입니다 
-var markerPosition  = new daum.maps.LatLng(33.450701, 126.570667); 
 
-// 마커를 생성합니다
-var marker = new daum.maps.Marker({
-    position: markerPosition
-});
+// 마커 이미지의 이미지 주소입니다
+var image1 = "https://www.pngfind.com/pngs/m/114-1147878_location-poi-pin-marker-position-red-map-google.png";
+var image2 = "https://is2-ssl.mzstatic.com/image/thumb/Purple123/v4/4c/86/af/4c86afd6-6b1f-c8fb-260f-ec300d9061af/AppIcon-0-1x_U007emarketing-0-0-85-220-0-10.png/246x0w.jpg";
+var image3 = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF770j_1B4rc_vk696n5oDeTIasx3DSX6EsWCXpuYfD-ojWaeW";
 
-// 마커가 지도 위에 표시되도록 설정합니다
-marker.setMap(map);
+function onMap(mapSrc, pos_list, marker_image) {
+    for (var i=0; i<pos_list.length; i++) {
+        // 마커 이미지의 이미지 크기 입니다
+        var imageSize = new daum.maps.Size(24, 35); 
+    
+        // 마커 이미지를 생성합니다    
+        var markerImage = new daum.maps.MarkerImage(marker_image, imageSize); 
+        
+        // 마커를 생성합니다
+        var marker = new daum.maps.Marker({
+            map: mapSrc, // 마커를 표시할 지도
+            position: pos_list[i].latlng, // 마커를 표시할 위치
+            title : pos_list[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+            image : markerImage // 마커 이미지 
+        });
+    }
+}
 
-// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
-// marker.setMap(null);    
+onMap(map, positions_gate, image1);
+onMap(map, positions_dorm, image2);
+onMap(map, positions_eng, image3);
 </script>
 </body>
 </html>
