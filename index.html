@@ -12,15 +12,51 @@
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
         center: new daum.maps.LatLng(37.459359, 126.952016), // 지도의 중심좌표
-        level: 5 // 지도의 확대 레벨
+        level: 7 // 지도의 확대 레벨
     };
 
 var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
  
 // 마커를 표시할 위치와 title 객체 배열입니다 
-var positions_gate = [new daum.maps.LatLng(37.465561, 126.948535), new daum.maps.LatLng(37.467934, 126.942616), new daum.maps.LatLng(37.469755, 126.943417)];
-var positions_dorm = [new daum.maps.LatLng(37.463417, 126.958984), new daum.maps.LatLng(37.471222, 126.95995), new daum.maps.LatLng(37.473376, 126.964068)];
-var positions_eng = [new daum.maps.LatLng(37.448807, 126.952540), new daum.maps.LatLng(37.459415, 126.932866), new daum.maps.LatLng(37.461986, 126.930236)];
+var positions_gate = [
+    {
+        title: '정문',
+        latlng: new daum.maps.LatLng(37.465561, 126.948535)
+    }, 
+    {
+        title: '삼성중학교',
+        latlng: new daum.maps.LatLng(37.467934, 126.942616)
+    }, 
+    {
+        title: '삼성고등학교',
+        latlng: new daum.maps.LatLng(37.469755, 126.943417)
+    }];
+var positions_dorm = [
+    {
+        title: '관악사',
+        latlng: daum.maps.LatLng(37.463417, 126.958984)
+    }, 
+    {
+        title: '낙성대공원',
+        latlng: new daum.maps.LatLng(37.471222, 126.95995)
+    }, 
+    {
+        title: '교체어린이공원',
+        latlng: new daum.maps.LatLng(37.473376, 126.964068)
+    }];
+var positions_eng = [
+    {
+        title: '제2공학관',
+        latlng: new daum.maps.LatLng(37.448807, 126.952540)
+    }, 
+    {
+        title: '약수암어린이공원',
+        latlng: new daum.maps.LatLng(37.459415, 126.932866)
+    },
+    {   
+        title: '합실어린이공원',
+        latlng: new daum.maps.LatLng(37.461986, 126.930236)
+    }];
 
 
 // 마커 이미지의 이미지 주소입니다
@@ -40,6 +76,38 @@ for (var i = 0; i < positions_gate.length; i ++) {
     var marker = new daum.maps.Marker({
         map: map, // 마커를 표시할 지도
         position: positions_gate[i],
+        image : markerImage // 마커 이미지 
+    });
+}
+
+for (var i = 0; i < positions_dorm.length; i ++) {
+    
+    // 마커 이미지의 이미지 크기 입니다
+    var imageSize = new daum.maps.Size(24, 35); 
+    
+    // 마커 이미지를 생성합니다    
+    var markerImage = new daum.maps.MarkerImage(image2, imageSize); 
+    
+    // 마커를 생성합니다
+    var marker = new daum.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: positions_dorm[i],
+        image : markerImage // 마커 이미지 
+    });
+}
+
+for (var i = 0; i < positions_eng.length; i ++) {
+    
+    // 마커 이미지의 이미지 크기 입니다
+    var imageSize = new daum.maps.Size(24, 35); 
+    
+    // 마커 이미지를 생성합니다    
+    var markerImage = new daum.maps.MarkerImage(image3, imageSize); 
+    
+    // 마커를 생성합니다
+    var marker = new daum.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: positions_eng[i],
         image : markerImage // 마커 이미지 
     });
 }
