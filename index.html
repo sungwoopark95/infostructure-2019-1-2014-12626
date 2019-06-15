@@ -20,41 +20,41 @@ var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니�
 // 마커를 표시할 위치와 title 객체 배열입니다 
 var positions_gate = [
     {
-        title: '정문',
+        content: '<div style="padding:5px;">정문</div>',
         latlng: new daum.maps.LatLng(37.465561, 126.948535)
     }, 
     {
-        title: '삼성중학교',
+        content: '<div style="padding:5px;">삼성중학교</div>',
         latlng: new daum.maps.LatLng(37.467934, 126.942616)
     }, 
     {
-        title: '삼성고등학교',
+        content: '<div style="padding:5px;">삼성고등학교</div>',
         latlng: new daum.maps.LatLng(37.469755, 126.943417)
     }];
 var positions_dorm = [
     {
-        title: '관악사',
+        content: '<div style="padding:5px;">관악사</div>',
         latlng: new daum.maps.LatLng(37.463417, 126.958984)
     }, 
     {
-        title: '낙성대공원',
+        content: '<div style="padding:5px;">낙성대공원</div>',
         latlng: new daum.maps.LatLng(37.471222, 126.95995)
     }, 
     {
-        title: '교체어린이공원',
+        content: '<div style="padding:5px;">교체어린이공원</div>',
         latlng: new daum.maps.LatLng(37.473376, 126.964068)
     }];
 var positions_eng = [
     {
-        title: '제2공학관',
+        content: '<div style="padding:5px;">제2공학관</div>',
         latlng: new daum.maps.LatLng(37.448807, 126.952540)
     }, 
     {
-        title: '약수암어린이공원',
+        content: '<div style="padding:5px;">약수암어린이공원</div>',
         latlng: new daum.maps.LatLng(37.459415, 126.932866)
     },
     {   
-        title: '합실어린이공원',
+        content: '<div style="padding:5px;">합실어린이공원</div>',
         latlng: new daum.maps.LatLng(37.461986, 126.930236)
     }];
 
@@ -81,13 +81,13 @@ for (var i = 0; i < positions_gate.length; i ++) {
     });
 
     marker.setMap(map);
-    var iwContent = '<div style="padding:5px;">Hello World! <br><a href="http://map.daum.net/link/map/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">큰지도보기</a> <a href="http://map.daum.net/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+    var iwContent = ', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
     iwPosition = positions_gate[i].latlng; //인포윈도우 표시 위치입니다
 
     // 인포윈도우를 생성합니다
     var infowindow = new daum.maps.InfoWindow({
         position : iwPosition,
-        content : iwContent
+        content : postions_gate[i].content
     });
   
     // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
@@ -107,8 +107,21 @@ for (var i = 0; i < positions_dorm.length; i ++) {
         map: map, // 마커를 표시할 지도
         position: positions_dorm[i].latlng,
         title: positions_dorm[i].title,
-        image : markerImage // 마커 이미지 
+        image : markerImage // 마커 이미지
     });
+
+    marker.setMap(map);
+    var iwContent = ', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+    iwPosition = positions_dorm[i].latlng; //인포윈도우 표시 위치입니다
+
+    // 인포윈도우를 생성합니다
+    var infowindow = new daum.maps.InfoWindow({
+        position : iwPosition,
+        content : postions_dorm[i].content
+    });
+  
+    // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+    infowindow.open(map, marker);
 }
 
 for (var i = 0; i < positions_eng.length; i ++) {
@@ -126,6 +139,19 @@ for (var i = 0; i < positions_eng.length; i ++) {
         title: positions_eng[i].title,
         image : markerImage // 마커 이미지 
     });
+
+    marker.setMap(map);
+    var iwContent = ', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+    iwPosition = positions_eng[i].latlng; //인포윈도우 표시 위치입니다
+
+    // 인포윈도우를 생성합니다
+    var infowindow = new daum.maps.InfoWindow({
+        position : iwPosition,
+        content : postions_eng[i].content
+    });
+  
+    // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+    infowindow.open(map, marker);
 }
 </script>
 </body>
