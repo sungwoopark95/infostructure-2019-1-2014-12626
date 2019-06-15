@@ -12,7 +12,7 @@
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
         center: new daum.maps.LatLng(37.459359, 126.952016), // 지도의 중심좌표
-        level: 2 // 지도의 확대 레벨
+        level: 5 // 지도의 확대 레벨
     };
 
 var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -24,7 +24,7 @@ var positions_eng = [new daum.maps.LatLng(37.448807, 126.952540), new daum.maps.
 
 
 // 마커 이미지의 이미지 주소입니다
-var image1 = "https://www.pngfind.com/pngs/m/114-1147878_location-poi-pin-marker-position-red-map-google.png";
+var image1 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 var image2 = "https://is2-ssl.mzstatic.com/image/thumb/Purple123/v4/4c/86/af/4c86afd6-6b1f-c8fb-260f-ec300d9061af/AppIcon-0-1x_U007emarketing-0-0-85-220-0-10.png/246x0w.jpg";
 var image3 = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF770j_1B4rc_vk696n5oDeTIasx3DSX6EsWCXpuYfD-ojWaeW";
 
@@ -39,8 +39,7 @@ for (var i = 0; i < positions_gate.length; i ++) {
     // 마커를 생성합니다
     var marker = new daum.maps.Marker({
         map: map, // 마커를 표시할 지도
-        position: positions_gate[i].latlng, // 마커를 표시할 위치
-        title : positions_gate[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        position: positions_gate[i],
         image : markerImage // 마커 이미지 
     });
 }
